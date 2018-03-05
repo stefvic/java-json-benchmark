@@ -16,6 +16,8 @@ public interface StreamDeserializer<T> {
 
     T gson(JsonReader reader) throws IOException;
 
+    T jackson1(org.codehaus.jackson.JsonParser jParser) throws IOException;
+    
     T jackson(JsonParser jParser) throws IOException;
 
     T minimaljson(Reader reader) throws IOException;

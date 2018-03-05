@@ -31,8 +31,10 @@ public class UsersJsonProvider implements JsonProvider<Users> {
 
     private final Gson gson = new Gson();
     private final ObjectMapper jackson = new ObjectMapper();
+    private final org.codehaus.jackson.map.ObjectMapper jackson1 = new org.codehaus.jackson.map.ObjectMapper();
     private final ObjectMapper jacksonAfterburner = new ObjectMapper();
     private final JsonFactory jacksonFactory = new JsonFactory();
+    private final org.codehaus.jackson.JsonFactory jackson1Factory = new org.codehaus.jackson.JsonFactory();
     private final Genson genson = new Genson();
     private final Jsonb yasson = new JsonBindingProvider().create()
             .withProvider(new org.glassfish.json.JsonProviderImpl())
@@ -73,6 +75,11 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     }
 
     @Override
+    public org.codehaus.jackson.map.ObjectMapper jackson1() {
+        return jackson1;
+    }
+    
+    @Override
     public ObjectMapper jackson() {
         return jackson;
     }
@@ -82,6 +89,11 @@ public class UsersJsonProvider implements JsonProvider<Users> {
         return jacksonAfterburner;
     }
 
+    @Override
+    public org.codehaus.jackson.JsonFactory jackson1Factory() {
+        return jackson1Factory;
+    }
+    
     @Override
     public JsonFactory jacksonFactory() {
         return jacksonFactory;

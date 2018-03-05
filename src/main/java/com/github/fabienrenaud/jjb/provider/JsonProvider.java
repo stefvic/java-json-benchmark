@@ -19,11 +19,15 @@ import java.util.Map;
 public interface JsonProvider<T> {
 
     Gson gson();
+    
+    org.codehaus.jackson.map.ObjectMapper jackson1();
 
     ObjectMapper jackson();
 
     ObjectMapper jacksonAfterburner();
 
+    org.codehaus.jackson.JsonFactory jackson1Factory();
+    
     JsonFactory jacksonFactory();
 
     Genson genson();

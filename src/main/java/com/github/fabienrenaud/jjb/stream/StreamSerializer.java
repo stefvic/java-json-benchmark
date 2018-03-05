@@ -18,6 +18,8 @@ public interface StreamSerializer<T> {
 
     void gson(final JsonWriter j, final T obj) throws IOException;
 
+    void jackson1(final org.codehaus.jackson.JsonGenerator j, final T obj) throws IOException;
+    
     void jackson(final JsonGenerator j, final T obj) throws IOException;
 
     org.json.simple.JSONObject jsonsimple(final T obj) throws IOException;

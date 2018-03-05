@@ -9,6 +9,7 @@ import java.util.Set;
  */
 public enum Library {
     GSON,
+    JACKSON1,
     JACKSON,
     JACKSON_AFTERBURNER,
     ORGJSON,

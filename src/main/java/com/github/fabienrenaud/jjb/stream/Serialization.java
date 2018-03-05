@@ -38,6 +38,16 @@ public class Serialization extends JsonBench {
 
     @Benchmark
     @Override
+    public Object jackson1() throws Exception {
+        ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
+        try (org.codehaus.jackson.JsonGenerator jGenerator = JSON_SOURCE.provider().jackson1Factory().createJsonGenerator(baos)) {
+            JSON_SOURCE.streamSerializer().jackson1(jGenerator, JSON_SOURCE.nextPojo());
+        }
+        return baos;
+    }
+    
+    @Benchmark
+    @Override
     public Object jackson() throws Exception {
         ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
         try (JsonGenerator jGenerator = JSON_SOURCE.provider().jacksonFactory().createGenerator(baos)) {

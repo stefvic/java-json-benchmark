@@ -23,6 +23,12 @@ public class Deserialization extends JsonBench {
 
     @Benchmark
     @Override
+    public Object jackson1() throws Exception {
+        return JSON_SOURCE.provider().jackson1().readValue(JSON_SOURCE.nextByteArray(), JSON_SOURCE.pojoType());
+    }
+    
+    @Benchmark
+    @Override
     public Object jackson() throws Exception {
         return JSON_SOURCE.provider().jackson().readValue(JSON_SOURCE.nextByteArray(), JSON_SOURCE.pojoType());
     }

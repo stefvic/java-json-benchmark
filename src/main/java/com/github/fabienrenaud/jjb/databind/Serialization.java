@@ -25,6 +25,14 @@ public class Serialization extends JsonBench {
         JSON_SOURCE.provider().gson().toJson(JSON_SOURCE.nextPojo(), b);
         return b;
     }
+    
+    @Benchmark
+    @Override
+    public Object jackson1() throws Exception {
+        ByteArrayOutputStream baos = JsonUtils.byteArrayOutputStream();
+        JSON_SOURCE.provider().jackson1().writeValue(baos, JSON_SOURCE.nextPojo());
+        return baos;
+    }
 
     @Benchmark
     @Override

@@ -17,3 +17,8 @@ out/
 # Runtime
 *.json
 *.log
+/bin/
+.settings
+.classpath
+.java-version
+.project

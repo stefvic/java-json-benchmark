@@ -29,6 +29,14 @@ public class Deserialization extends JsonBench {
 
     @Benchmark
     @Override
+    public Object jackson1() throws IOException {
+        try (org.codehaus.jackson.JsonParser jParser = JSON_SOURCE.provider().jackson1Factory().createJsonParser(JSON_SOURCE.nextByteArray())) {
+            return JSON_SOURCE.streamDeserializer().jackson1(jParser);
+        }
+    }
+    
+    @Benchmark
+    @Override
     public Object jackson() throws IOException {
         try (JsonParser jParser = JSON_SOURCE.provider().jacksonFactory().createParser(JSON_SOURCE.nextByteArray())) {
             return JSON_SOURCE.streamDeserializer().jackson(jParser);

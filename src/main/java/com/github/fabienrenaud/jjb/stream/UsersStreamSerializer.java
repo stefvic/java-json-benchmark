@@ -383,6 +383,20 @@ public class UsersStreamSerializer implements StreamSerializer<Users> {
     }
 
     @Override
+    public void jackson1(org.codehaus.jackson.JsonGenerator j, Users obj) throws IOException {
+        j.writeStartObject();
+        if (obj.users != null) {
+            j.writeFieldName("users");
+            j.writeStartArray();
+            for (User u : obj.users) {
+                jackson1(j, u);
+            }
+            j.writeEndArray();
+        }
+        j.writeEndObject();
+    }
+    
+    @Override
     public void jackson(JsonGenerator j, Users obj) throws IOException {
         j.writeStartObject();
         if (obj.users != null) {
@@ -396,6 +410,102 @@ public class UsersStreamSerializer implements StreamSerializer<Users> {
         j.writeEndObject();
     }
 
+    private void jackson1(final org.codehaus.jackson.JsonGenerator j, final User u) throws IOException {
+        j.writeStartObject();
+        if (u._id != null) {
+            j.writeFieldName("_id");
+            j.writeString(u._id);
+        }
+        j.writeFieldName("index");
+        j.writeNumber(u.index);
+        if (u.guid != null) {
+            j.writeFieldName("guid");
+            j.writeString(u.guid);
+        }
+        j.writeFieldName("isActive");
+        j.writeBoolean(u.isActive);
+        if (u.balance != null) {
+            j.writeFieldName("balance");
+            j.writeString(u.balance);
+        }
+        if (u.picture != null) {
+            j.writeFieldName("picture");
+            j.writeString(u.picture);
+        }
+        j.writeFieldName("age");
+        j.writeNumber(u.age);
+        if (u.eyeColor != null) {
+            j.writeFieldName("eyeColor");
+            j.writeString(u.eyeColor);
+        }
+        if (u.name != null) {
+            j.writeFieldName("name");
+            j.writeString(u.name);
+        }
+        if (u.gender != null) {
+            j.writeFieldName("gender");
+            j.writeString(u.gender);
+        }
+        if (u.company != null) {
+            j.writeFieldName("company");
+            j.writeString(u.company);
+        }
+        if (u.email != null) {
+            j.writeFieldName("email");
+            j.writeString(u.email);
+        }
+        if (u.phone != null) {
+            j.writeFieldName("phone");
+            j.writeString(u.phone);
+        }
+        if (u.address != null) {
+            j.writeFieldName("address");
+            j.writeString(u.address);
+        }
+        if (u.about != null) {
+            j.writeFieldName("about");
+            j.writeString(u.about);
+        }
+        if (u.registered != null) {
+            j.writeFieldName("registered");
+            j.writeString(u.registered);
+        }
+        j.writeFieldName("latitude");
+        j.writeNumber(u.latitude);
+        j.writeFieldName("longitude");
+        j.writeNumber(u.longitude);
+        if (u.tags != null) {
+            j.writeFieldName("tags");
+            j.writeStartArray();
+            for (String t : u.tags) {
+                j.writeString(t);
+            }
+            j.writeEndArray();
+        }
+        if (u.friends != null) {
+            j.writeFieldName("friends");
+            j.writeStartArray();
+            for (Friend f : u.friends) {
+                j.writeStartObject();
+                j.writeFieldName("id");
+                j.writeString(f.id);
+                j.writeFieldName("name");
+                j.writeString(f.name);
+                j.writeEndObject();
+            }
+            j.writeEndArray();
+        }
+        if (u.greeting != null) {
+            j.writeFieldName("greeting");
+            j.writeString(u.greeting);
+        }
+        if (u.favoriteFruit != null) {
+            j.writeFieldName("favoriteFruit");
+            j.writeString(u.favoriteFruit);
+        }
+        j.writeEndObject();
+    }
+    
     private void jackson(final JsonGenerator j, final User u) throws IOException {
         j.writeStartObject();
         if (u._id != null) {

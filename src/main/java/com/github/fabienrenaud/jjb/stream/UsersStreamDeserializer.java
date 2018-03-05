@@ -321,6 +321,21 @@ public class UsersStreamDeserializer implements StreamDeserializer<Users> {
     }
 
     @Override
+    public Users jackson1(org.codehaus.jackson.JsonParser jParser) throws IOException {
+        Users uc = new Users();
+        while (jParser.nextToken() != org.codehaus.jackson.JsonToken.END_OBJECT) {
+            String fieldname = jParser.getCurrentName();
+            if ("users".equals(fieldname)) {
+                uc.users = new ArrayList<>();
+                while (jParser.nextToken() != org.codehaus.jackson.JsonToken.END_ARRAY) {
+                    uc.users.add(jacksonUser1(jParser));
+                }
+            }
+        }
+        return uc;
+    }
+    
+    @Override
     public Users jackson(JsonParser jParser) throws IOException {
         Users uc = new Users();
         while (jParser.nextToken() != com.fasterxml.jackson.core.JsonToken.END_OBJECT) {
@@ -335,6 +350,130 @@ public class UsersStreamDeserializer implements StreamDeserializer<Users> {
         return uc;
     }
 
+    private User jacksonUser1(org.codehaus.jackson.JsonParser jParser) throws IOException {
+        User r = new User();
+        while (jParser.nextToken() != org.codehaus.jackson.JsonToken.END_OBJECT) {
+            String fieldname = jParser.getCurrentName();
+            if (fieldname == null) {
+                continue;
+            }
+            switch (fieldname) {
+                case "_id":
+                    jParser.nextToken();
+                    r._id = jParser.getText();
+                    break;
+                case "index":
+                    jParser.nextToken();
+                    r.index = jParser.getIntValue();
+                    break;
+                case "guid":
+                    jParser.nextToken();
+                    r.guid = jParser.getText();
+                    break;
+                case "isActive":
+                    jParser.nextToken();
+                    r.isActive = jParser.getBooleanValue();
+                    break;
+                case "balance":
+                    jParser.nextToken();
+                    r.balance = jParser.getText();
+                    break;
+                case "picture":
+                    jParser.nextToken();
+                    r.picture = jParser.getText();
+                    break;
+                case "age":
+                    jParser.nextToken();
+                    r.age = jParser.getIntValue();
+                    break;
+                case "eyeColor":
+                    jParser.nextToken();
+                    r.eyeColor = jParser.getText();
+                    break;
+                case "name":
+                    jParser.nextToken();
+                    r.name = jParser.getText();
+                    break;
+                case "gender":
+                    jParser.nextToken();
+                    r.gender = jParser.getText();
+                    break;
+                case "company":
+                    jParser.nextToken();
+                    r.company = jParser.getText();
+                    break;
+                case "email":
+                    jParser.nextToken();
+                    r.email = jParser.getText();
+                    break;
+                case "phone":
+                    jParser.nextToken();
+                    r.phone = jParser.getText();
+                    break;
+                case "address":
+                    jParser.nextToken();
+                    r.address = jParser.getText();
+                    break;
+                case "about":
+                    jParser.nextToken();
+                    r.about = jParser.getText();
+                    break;
+                case "registered":
+                    jParser.nextToken();
+                    r.registered = jParser.getText();
+                    break;
+                case "latitude":
+                    jParser.nextToken();
+                    r.latitude = jParser.getDoubleValue();
+                    break;
+                case "longitude":
+                    jParser.nextToken();
+                    r.longitude = jParser.getDoubleValue();
+                    break;
+                case "greeting":
+                    jParser.nextToken();
+                    r.greeting = jParser.getText();
+                    break;
+                case "favoriteFruit":
+                    jParser.nextToken();
+                    r.favoriteFruit = jParser.getText();
+                    break;
+                case "tags":
+                    r.tags = new ArrayList<>();
+                    jParser.nextToken();
+                    while (jParser.nextToken() != org.codehaus.jackson.JsonToken.END_ARRAY) {
+                        r.tags.add(jParser.getText());
+                    }
+                    break;
+                case "friends":
+                    r.friends = new ArrayList<>();
+                    jParser.nextToken(); // current token is "[", move next.
+                    while (jParser.nextToken() != org.codehaus.jackson.JsonToken.END_ARRAY) {
+                        Friend f = new Friend();
+                        while (jParser.nextToken() != org.codehaus.jackson.JsonToken.END_OBJECT) {
+                            String fn = jParser.getCurrentName();
+                            if (fn == null) {
+                                continue;
+                            }
+                            switch (fn) {
+                                case "id":
+                                    jParser.nextToken();
+                                    f.id = jParser.getText();
+                                    break;
+                                case "name":
+                                    jParser.nextToken();
+                                    f.name = jParser.getText();
+                                    break;
+                            }
+                        }
+                        r.friends.add(f);
+                    }
+                    break;
+            }
+        }
+        return r;
+    }    
+    
     private User jacksonUser(JsonParser jParser) throws IOException {
         User r = new User();
         while (jParser.nextToken() != com.fasterxml.jackson.core.JsonToken.END_OBJECT) {
